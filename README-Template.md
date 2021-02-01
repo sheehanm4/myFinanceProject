@@ -1,6 +1,6 @@
-# Project Title
+# My Python-Finance Project
 
-One Paragraph of project description goes here
+During Covid and WFM life style, I wanted to learn more about a programming language. I Invested time into learning Python. I enjoyed learning and wanted to apply the basics to a project. Like many 20 something I've been spending free time investing and learning about trading. I've had intereste in Technical Analysis as a visual learning. I wanted to create a project that took these interests and combined them into a functioning class.
 
 ## Getting Started
 
