@@ -21,8 +21,7 @@ class stock():
         """
         stock( 'Ticker Symbol String' ). 
         
-        This Class is based off of Yfinance and the goal is to pull specific data from
-        the Ticker Objects, and re-organize that data into it's own object.
+        This Class is based off of Yfinance and the goal is to pull specific data from the Ticker Objects, and re-organize that data into it's own object.
         """
         ticker_symbol = self.get_ticker()
         
@@ -91,6 +90,7 @@ class stock():
         return hist
 
     def get_ticker(self):
+        
         while True:
             ticker = input('What Symbol Are you Interested in? \n' )  
             #Check to make sure ticker Sumbol is valid
