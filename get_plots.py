@@ -3,21 +3,22 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import ta_analysis as ta
 
+'''
+Test Code
 
-#Test Code
-
-#import yfinance as yf
-#sbux = yf.ticker.Ticker('SBUX')
-#sbux_data = sbux.history('1d','1m')
-#Test Code
+import yfinance as yf
+sbux = yf.ticker.Ticker('SBUX')
+sbux_data = sbux.history('1d','1m')
+Test Code
+'''
 
 class fin_plots():
 
 
-    def __init__(self,input_data,title,timeFrame):
+    def __init__(self,input_data,title):
         self.data = input_data
         self.title = title
-        #self.timeFrame = timeFrame
+        self.timeFrame = timeFrame
 
         pass
 
@@ -131,6 +132,12 @@ class fin_plots():
         return fig
 
     def get_price_rsi(self,rsi_df):
+        '''
+        Returns a candlestick plot with Relative Stregth Index subplot.
+
+        Input Dataframe must contain Open, High, Low, Close Data.
+
+        '''
         input_df = self.data
 
         fig = make_subplots(rows=2, cols=1,row_heights=[1,.5],shared_xaxes=True)
@@ -149,12 +156,15 @@ class fin_plots():
 
 
 
+'''
+Test Code
 
-#def main():
+def main():
  
-    #my_rsi = ta.get_rsi(sbux_data)   
-    #myplots = fin_plots(sbux_data,'My Plot', 'My Time')
-    #myplot = myplots.get_price_rsi(my_rsi)
-    #myplot.show()
+    my_rsi = ta.get_rsi(sbux_data)   
+    myplots = fin_plots(sbux_data,'My Plot', 'My Time')
+    myplot = myplots.get_price_rsi(my_rsi)
+    myplot.show()
 
-#if __name__ == '__main__':main()
+if __name__ == '__main__':main()
+'''
