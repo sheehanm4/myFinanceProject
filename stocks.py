@@ -182,6 +182,10 @@ class stock():
 def main():
 
     mystock = stock()
+    mydata = mystock.get_history()
+    myplots = gp.fin_plots(mydata, 'First Plot')
+    my_first_plot = myplots.get_plot_base()
+    my_first_plot.show()
 
 
 

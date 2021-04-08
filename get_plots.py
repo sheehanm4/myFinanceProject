@@ -5,9 +5,10 @@ import ta_analysis as ta
 
 
 #Test Code
-import yfinance as yf
-sbux = yf.ticker.Ticker('SBUX')
-sbux_data = sbux.history('1d','1m')
+
+#import yfinance as yf
+#sbux = yf.ticker.Ticker('SBUX')
+#sbux_data = sbux.history('1d','1m')
 #Test Code
 
 class fin_plots():
@@ -16,7 +17,7 @@ class fin_plots():
     def __init__(self,input_data,title,timeFrame):
         self.data = input_data
         self.title = title
-        self.timeFrame = timeFrame
+        #self.timeFrame = timeFrame
 
         pass
 
@@ -149,11 +150,11 @@ class fin_plots():
 
 
 
-def main():
+#def main():
  
-    my_rsi = ta.get_rsi(sbux_data)   
-    myplots = fin_plots(sbux_data,'My Plot', 'My Time')
-    myplot = myplots.get_price_rsi(my_rsi)
-    myplot.show()
+    #my_rsi = ta.get_rsi(sbux_data)   
+    #myplots = fin_plots(sbux_data,'My Plot', 'My Time')
+    #myplot = myplots.get_price_rsi(my_rsi)
+    #myplot.show()
 
-if __name__ == '__main__':main()
+#if __name__ == '__main__':main()
