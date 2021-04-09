@@ -4,9 +4,11 @@ import numpy as np
 
 def get_ema(ohlc_df,ema_val):
     '''
-    Return Data Frame with an "EMA_{ema_val}" Column
+    Calculates the Exponential moving average for a OHLC dataFrame set. Returns a Data Frame with an "EMA_{ema_val}" Column containing the EMA for that Close.
 
-    input dataframe must contain a 'Close' column
+    Input dataframe must contain a 'Close' column
+
+    Input EMA should be a Whole Number
 
     Parameters:
 
@@ -14,6 +16,8 @@ def get_ema(ohlc_df,ema_val):
     index.
     
     ema_val - An integer value for the desire EMA Calculation
+
+    Returns DataFrame with Time and the Specific EMA used. 
 
     '''
     ema = ohlc_df['Close'].ewm(span = ema_val, adjust = False).mean()
@@ -32,8 +36,9 @@ def get_macd(ohlc_df):
 
     Parameters:
 
-    ohlc_df - a standard Open,High,Low,Close data frame with any
-    index.
+    ohlc_df - a standard Open,High,Low,Close data frame.
+
+    Returns - A Draframe with the 12 EMA, 26 EMA, A Difference Column and MACD EMA Column
     
     '''
     ema_12 = get_ema(ohlc_df,12)
@@ -43,13 +48,24 @@ def get_macd(ohlc_df):
 
     macd_df['diff_12_26'] = macd_df.iloc[:,0] - macd_df.iloc[:,1]
     macd_df['MACD EMA'] = macd_df.iloc[:,2].ewm(span = 9,adjust = False).mean()
-
+    macd_df['hist'] = macd_df.iloc[:,2] - macd_df.iloc[:,3]
     return macd_df
 
 
 
 def get_rsi(ohlc_df): 
     '''
+    The methods returns a dataFrame with the Relative Strength Index Data.
+
+    Parameters:
+    ohlc_df - An input Data Frame of Open, High, Low, and Close data relative to time.
+
+    Return: A dataFrame of Time, Prices and the Relative Strength Index(RSI)
+
+    '''
+
+    '''
+
     The Following code for RSI was taken, and repurposed, from a 
     stackoverflow comment that addressed the smoothing in calculating RSI 
     compared to the more commonly known calculation.

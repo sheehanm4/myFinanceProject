@@ -1,7 +1,4 @@
 import yfinance as yf
-import pandas as pd
-from datetime import datetime
-import numpy as  np
 import ta_analysis as ta
 import get_plots as gp
 
@@ -19,9 +16,9 @@ class stock():
 
     def __init__(self):
         """
-        stock( 'Ticker Symbol String' ). 
+        stock(). 
         
-        This Class is based off of Yfinance and the goal is to pull specific data from the Ticker Objects, and re-organize that data into it's own object.
+        This Class is based off of Yfinance and the goal is to pull specific data from the Ticker Objects, and re-organize that data into it's own object. Then leverage scripts that can perform calculations to help create 
         """
         ticker_symbol = self.get_ticker()
         
@@ -42,6 +39,8 @@ class stock():
             raise AttributeError('Invalid Time Flag! \n')
 
         self.interval = time_inputs['interval']
+
+        self.ohlc_data = self.get_history()
     
 
     def get_bid_ask(self):
@@ -182,9 +181,8 @@ class stock():
 def main():
 
     mystock = stock()
-    mydata = mystock.get_history()
-    myplots = gp.fin_plots(mydata, 'First Plot')
-    my_first_plot = myplots.get_plot_base()
+    myplots = gp.fin_plots(mystock.ohlc_data,'First Plot')
+    my_first_plot = myplots.get_price_vol_prof()
     my_first_plot.show()
 
 
