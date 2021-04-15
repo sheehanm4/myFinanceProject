@@ -113,7 +113,7 @@ def get_rsi(ohlc_df):
             rsi_series[i] = 100
         i += 1
 
-    #Conver 0s to NaNs
+    #Convert 0s to NaNs
     rsi_series = np.where(rsi_series == 0, np.nan,rsi_series)
 
     wilder_rsi_dict = {
