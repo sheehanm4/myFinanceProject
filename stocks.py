@@ -3,11 +3,9 @@ import ta_analysis as ta
 import get_plots as gp
 
 #Define any varaibles
-
 ticker_summary = ('symbol','shortName','sector','industry','marketCap','ask',
 'bid','open','regularMarketOpen','previousClose','dayLow', 
 'dayHigh','fiftyTwoWeekLow', 'fiftyTwoWeekHigh','pegRatio')
-
 global_periods = ('1d','5d','1mo','3mo','6mo','1y','2y','5y','10y', 'ytd','max')
 global_intervals = ('1m','2m','5m','15m','30m','60m','90m','1h','1d','5d','1wk','1mo','3mo')
 
@@ -18,7 +16,7 @@ class stock():
         """
         stock(). 
         
-        This Class is based off of Yfinance and the goal is to pull specific data from the Ticker Objects, and re-organize that data into it's own object. Then leverage scripts that can perform calculations to help create 
+        This Class is based off of Yfinance and the goal is to pull specific data from the Ticker Objects, and re-organize that data into it's own object. Then leverage scripts that can perform calculations to help create graphs and display the technical analysis.
         """
         ticker_symbol = self.get_ticker()
         
@@ -89,7 +87,12 @@ class stock():
         return hist
 
     def get_ticker(self):
-        
+        '''
+        Prompts the user to enter a ticker symbol from which to pull data from and 
+        check the validity of the input. 
+
+        Example input would be 'SBUX'
+        '''
         while True:
             ticker = input('What Symbol Are you Interested in? \n' )  
             #Check to make sure ticker Sumbol is valid
@@ -111,6 +114,11 @@ class stock():
         return ticker
 
     def get_time(self):
+        ''' Generate a user interface to define the time inputs
+
+            Time inputs can either be previous amount of tiome from present OR a pre-defined
+            date period
+        '''
         format = "%Y-%m-%d"
         response = dict(date_flag = False)
         while True:
