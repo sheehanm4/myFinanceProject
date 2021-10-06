@@ -9,19 +9,19 @@ I view this project as something of a precursor to what could be a better script
 
 # Libraries that will be needed
 
--pandas 
--numpy
--plotly
--yfinance
+- pandas 
+- numpy
+- plotly
+- yfinance
 
 
 ### Using the Scripts
 
 1. Run the Stock.py Script
 
-'''
+' ' '
 /.stock.py
-'''
+' ' ' 
 
 2. Enter in a valid Stock Symbol
 
@@ -29,6 +29,11 @@ I view this project as something of a precursor to what could be a better script
 
 4. Type a Interval from the choices
 
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+``` 
 
 ## Sample Run
 
