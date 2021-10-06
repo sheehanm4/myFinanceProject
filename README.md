@@ -9,18 +9,19 @@ I view this project as something of a precursor to what could be a better script
 
 # Libraries that will be needed
 
-'''
-pandas 
-numpy
-plotly
-yfinance
-'''
+-pandas 
+-numpy
+-plotly
+-yfinance
+
 
 ### Using the Scripts
 
 1. Run the Stock.py Script
 
-> /.stock.py
+'''
+/.stock.py
+'''
 
 2. Enter in a valid Stock Symbol
 
@@ -29,8 +30,10 @@ yfinance
 4. Type a Interval from the choices
 
 
-## Sample Run 
+## Sample Run
+
 '''
+
 python .\stocks.py
 What Symbol Are you Interested in? 
 > MSFT
