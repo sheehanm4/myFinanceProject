@@ -64,7 +64,7 @@ Retrieving Data for Microsoft Corporation ...
 
 # Sample Plot
 
-![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+![This is an image](https://github.com/sheehanm4/myFinanceProject/blob/dc9da5c0817f1ffc4a2f7529063af541ff7b6a95/sample.png)
 
 
 ### Acknowledgments
