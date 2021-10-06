@@ -2,7 +2,7 @@ import yfinance as yf
 import ta_analysis as ta
 import get_plots as gp
 
-#Define any varaibles
+#Define varaibles
 ticker_summary = ('symbol','shortName','sector','industry','marketCap','ask',
 'bid','open','regularMarketOpen','previousClose','dayLow', 
 'dayHigh','fiftyTwoWeekLow', 'fiftyTwoWeekHigh','pegRatio')
