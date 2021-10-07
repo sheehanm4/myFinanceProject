@@ -11,7 +11,7 @@ def main():
     myplots = gp.fin_plots(mystock.ohlc_data,'First Plot')
     mystock_macd = ta.get_macd(mystock.ohlc_data)
     mystock_rsi = ta.get_rsi(mystock.ohlc_data)
-    my_first_plot = myplots.get_price_rsi(mystock_rsi)
+    my_first_plot = myplots.get_price_macd(mystock_macd)
     my_first_plot.show()
 
 

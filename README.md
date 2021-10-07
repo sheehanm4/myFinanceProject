@@ -37,7 +37,7 @@ mystock = stocks.stock()
 ```
 myplots = gp.fin_plots(mystock.ohlc_data,'First Plot')
 ```
-6. Use the Technical Analsis Script to get relevant Data for your plot
+6. Use the Technical Analysis Script to get relevant Data for your plot
 ```
 mystock_macd = ta.get_macd(mystock.ohlc_data)
 mystock_rsi = ta.get_rsi(mystock.ohlc_data)
