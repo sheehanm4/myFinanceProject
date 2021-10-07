@@ -17,10 +17,10 @@ I view this project as something of a precursor to what could be a better script
 
 ### Using the Scripts
 
-1. Run the Stock.py Script
+1. Initiate the Stock object that is based on yfiance ticker
 
 ```
-/.stock.py
+mystock = stocks.stock()
 ```
 
 2. Enter in a valid Stock Symbol
@@ -29,37 +29,19 @@ I view this project as something of a precursor to what could be a better script
 
 4. Type a Interval from the choices
 
-
-## Sample Run
-
+5. Use the Attribute Open, High, Low, Close data to create a Plot Object
 ```
-python .\stocks.py
-What Symbol Are you Interested in? 
+myplots = gp.fin_plots(mystock.ohlc_data,'First Plot')
 ```
-
-*MSFT*
-
+6. Use the Technical Analsis Script to get relevant Data for your plot
 ```
-...Processing...
-The stock Ticker, MSFT, entered is valid....
-Do you want to input a generic time period or a start and end date? Enter in "generic" or "dates" to select?
+mystock_macd = ta.get_macd(mystock.ohlc_data)
+mystock_rsi = ta.get_rsi(mystock.ohlc_data)
 ```
-*generic*
-
+7. Make your plot and show it.
 ```
-What is the desired Time period? The Possible options are: 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max. 
-```
-*1y*
-```
-The Time Period is Valid 
-
-What is the desired Time Interval? The Possible options are: 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo. Intraday data cannot extend last 60 days
-```
-*1d*
-```
-The Time Interval is Valid 
-
-Retrieving Data for Microsoft Corporation ...
+my_first_plot = myplots.get_price_rsi(mystock_rsi)
+my_first_plot.show()
 ```
 
 # Sample Plot
