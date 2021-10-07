@@ -20,6 +20,10 @@ I view this project as something of a precursor to what could be a better script
 1. Initiate the Stock object that is based on yfiance ticker
 
 ```
+import stocks
+import ta_analysis as ta
+import get_plots as gp
+
 mystock = stocks.stock()
 ```
 
