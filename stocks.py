@@ -65,7 +65,7 @@ class stock():
         of yf.history()
 
         Parameters: period : 
-        str Valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y, ytd,max 
+        str Valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max 
 
         interval : 
         str Valid intervals: 1m,2m,5m,15m,30m,60m,90m,1h,1d,5d,1wk,1mo,3mo 
@@ -92,22 +92,25 @@ class stock():
         '''
         while True:
             ticker = input('What Symbol Are you Interested in? \n' )  
-            #Check to make sure ticker Sumbol is valid
+            
             #Check that a string was entered
-
-            #Check that a valid symbol was entered
             try:
-                print('...Processing...')
-                symbolData = yf.Ticker(ticker)
-                name = symbolData.info['shortName']
-                type(name) == str 
-                #Print the Symbol is valid
-                print('The stock Ticker, {}, entered is valid....\n'.format(ticker))
-                break
-
+                type(ticker) == str
+                try:
+                    print('...Processing...')
+                    symbolData = yf.Ticker(ticker)
+                    name = symbolData.info['shortName']
+                    type(name) == str 
+                    #Print the Symbol is valid
+                    print('The stock Ticker, {}, entered is valid....\n'.format(ticker))
+                    break
+                except:
+                    print('The Entered Value is not valid, Try Again. \n')
+                    continue
             except:
-                print('The Entered Value is not valid, Try Again. \n')
+                print('The Entered Value is not a string, Try Again. \n')
                 continue
+
         return ticker
 
     def get_time(self):
