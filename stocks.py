@@ -1,4 +1,4 @@
-import yfinance as yf
+from yfinance import Ticker
 
 #Define varaibles
 ticker_summary = ('symbol','shortName','sector','industry','marketCap','ask',
@@ -7,24 +7,24 @@ ticker_summary = ('symbol','shortName','sector','industry','marketCap','ask',
 global_periods = ('1d','5d','1mo','3mo','6mo','1y','2y','5y','10y', 'ytd','max')
 global_intervals = ('1m','2m','5m','15m','30m','60m','90m','1h','1d','5d','1wk','1mo','3mo')
 
-class stock():
+class stock(Ticker):
 
 
-    def __init__(self):
+    def __init__(self,ticker_symbol):
         """
         stock(). 
         
         This Class is based off of Yfinance and the goal is to pull specific data from the Ticker Objects, and re-organize that data into it's own object. Then leverage scripts that can perform calculations to help create graphs and display the technical analysis.
         """
-        ticker_symbol = self.get_ticker()
+        #ticker_symbol = self.get_ticker()
         
-        time_inputs = self.get_time()
+        #time_inputs = self.get_time()
 
         #estblish self._this_stock as equivelent to the ticker object
-        self._this_stock = yf.Ticker(ticker_symbol)
+        self._this_stock = Ticker(ticker_symbol)
         #the self._this_stock_info
-        self._this_stock_info = self._this_stock.info
-        
+        #self._this_stock_info = self._this_stock.info
+        '''
         self._date_flag = time_inputs['date_flag']
         if time_inputs['date_flag'] == False:
             self.period = time_inputs['period']
@@ -33,9 +33,9 @@ class stock():
             self.end_date = time_inputs['end']
         else:
             raise AttributeError('Invalid Time Flag! \n')
-
+        
         self.interval = time_inputs['interval']
-
+        '''
         self.ohlc_data = self.get_history()
     
     def get_bid_ask(self):
@@ -44,8 +44,9 @@ class stock():
         Returns the bid, ask and spread of a stock object in list form
         Returns [bid,ask,spread]
         '''
-        ask = self._this_stock_info['ask']
-        bid = self._this_stock_info['bid']
+        
+        ask = self.info['ask']
+        bid = self.info['bid']
         spread = round(abs(ask - bid),3)
 
         return [bid,ask,spread]
@@ -57,7 +58,7 @@ class stock():
         '''
         print('Printing Summary of the Ticker...')
         for k in ticker_summary:
-            print('{} | {} '.format(k,self._this_stock_info[k]))
+            print('{} | {} '.format(k,self.info[k]))
 
     def get_history(self):
         '''
@@ -77,9 +78,9 @@ class stock():
             'shortName']))
 
         if self._date_flag == False:
-            hist = self._this_stock.history(period = self.period, interval = self.interval)
+            hist = self.history(period = self.period, interval = self.interval)
         else:
-            hist = self._this_stock.history(start = self.start_date, end = self.end_date, interval = self.interval)
+            hist = self.history(start = self.start_date, end = self.end_date, interval = self.interval)
 
         return hist
 
@@ -98,7 +99,7 @@ class stock():
                 type(ticker) == str
                 try:
                     print('...Processing...')
-                    symbolData = yf.Ticker(ticker)
+                    symbolData = Ticker(ticker)
                     name = symbolData.info['shortName']
                     type(name) == str 
                     #Print the Symbol is valid
