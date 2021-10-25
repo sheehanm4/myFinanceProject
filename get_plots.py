@@ -4,6 +4,10 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import ta_analysis as ta
 
+colors = {
+    'background': '#504A4B',
+    'text': '#7FDBFF'
+}
 
 class fin_plots():
 
@@ -44,12 +48,19 @@ class fin_plots():
                                             open=input_df['Open'],
                                             high=input_df['High'],
                                             low=input_df['Low'],
-                                            close=input_df['Close'],name = 'Price')])
+                                            close=input_df['Close'],
+                                            name = 'Price')])
+
+        fig.update_xaxes( rangebreaks=[
+        dict(bounds=["sat", "mon"]), #hide weekends
+        dict(values=["2015-12-25", "2016-01-01"])  # hide Christmas and New Year's
+        ])
 
             
-        fig.update_layout(  title = self.title,
+        fig.update_layout( title = self.title,
                             yaxis_title = 'Price',
-                            xaxis_title = 'Time')
+                            xaxis_title = 'Time',
+                            plot_bgcolor = colors['background'])              
         return fig
     
     def get_plot_volume(self):
