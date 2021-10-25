@@ -13,6 +13,7 @@ I view this project as something of a precursor to what could be a better script
 - numpy
 - plotly
 - yfinance
+- dash
 
 
 ### Using the Scripts
@@ -56,5 +57,5 @@ my_first_plot.show()
 ### Acknowledgments
 
 * yfinace Maintainer Ran Aroussi
-* stackoverflow contributor 
+* stackoverflow contributors
 

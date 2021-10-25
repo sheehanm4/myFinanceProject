@@ -25,7 +25,7 @@ myfig = myplot.get_plot_base()
 app = dash.Dash(__name__)
 
 colors = {
-    'background': '#111111',
+    'background': '#504A4B',
     'text': '#7FDBFF'
 }
 
@@ -43,11 +43,34 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         'textAlign': 'center',
         'color': colors['text']
     }),
+    html.Br(),
+    html.Label('My Stock'),
+    dcc.Input(value='Ticker', type='text'),
 
+    html.Div(children=[
+        html.Label('Period'),
+        dcc.Dropdown(
+            options=[
+                {'label': '1 Year', 'value': '1y'},
+                {'label': '1 Day', 'value': '1d'},
+            ],
+            value='Select'
+        ),
+
+    html.Div(children=[
+        html.Label('Interval'),
+        dcc.Dropdown(
+            options=[
+                {'label': '1 Day', 'value': '1d'},
+                {'label': '1 Minute', 'value': '1m'}],
+            value='Select'
+        ),
+        
     dcc.Graph(
         id='My Stock Sample',
-        figure=myfig
-    )
+        figure=myfig)
+    ])
+])
 ])
 
 if __name__ == '__main__':
