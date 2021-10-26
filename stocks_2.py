@@ -82,6 +82,9 @@ class stock():
 
     def get_rsi(self):
         return ta.get_rsi(self.ohlc_data)
+
+    def get_ema(self,ema_val = 200):
+        return ta.get_ema(self.ohlc_data,ema_val)
         
 
 

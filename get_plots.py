@@ -83,6 +83,12 @@ class fin_plots():
         fig.update_layout(height=800, width=800, title_text=self.title)
         fig.update_yaxes(title_text="Price", showgrid=False, row=1, col=1)
         fig.update_yaxes(title_text="Volume", showgrid=False, row=2, col=1)
+
+        fig.update_xaxes( rangebreaks=[
+        dict(bounds=["sat", "mon"]), #hide weekends
+        dict(values=["2015-12-25", "2016-01-01"])  # hide Christmas and New Year's
+        ])
+
         return fig
    
     def get_plot_ema(self,ema1,ema2):
@@ -108,7 +114,12 @@ class fin_plots():
                 go.Scatter(x=ema1.index, y=ema1[ema1_name],name = ema1_name, line=dict(color='orange', width=1)),
                 go.Scatter(x=ema2.index, y=ema2[ema2_name],name = ema2_name, line=dict(color='green', width=1))])
 
-        fig.update_layout(height=800, width=800, title_text="Price with {} and {}".format(ema1_name,ema2_name))      
+        fig.update_layout(height=800, width=800, title_text="Price with {} and {}".format(ema1_name,ema2_name))
+
+        fig.update_xaxes( rangebreaks=[
+        dict(bounds=["sat", "mon"]), #hide weekends
+        dict(values=["2015-12-25", "2016-01-01"])  # hide Christmas and New Year's
+        ])    
         return fig 
 
     def get_plot_volume_ema(self,ema1,ema2):
@@ -136,6 +147,10 @@ class fin_plots():
         fig.append_trace(go.Bar(x=input_df.index, y = input_df['Volume'], name = 'Volume'),row=2, col=1)
         fig.update_layout(height=800, width=800, title_text="Price and Volume")
 
+        fig.update_xaxes( rangebreaks=[
+        dict(bounds=["sat", "mon"]), #hide weekends
+        dict(values=["2015-12-25", "2016-01-01"])  # hide Christmas and New Year's
+        ])
         return fig
         
     def get_price_vol_prof(self):
@@ -205,6 +220,10 @@ class fin_plots():
         fig.append_trace(go.Bar(x=macd_df.index , y = macd_df['hist'],name = 'DIFF',marker_color=macd_df['hist_color']), row=2, col=1)
 
         fig.update_layout(xaxis_rangeslider_visible=False,height=800, width=1000, xaxis={'type': 'category'})
+        fig.update_xaxes( rangebreaks=[
+        dict(bounds=["sat", "mon"]), #hide weekends
+        dict(values=["2015-12-25", "2016-01-01"])  # hide Christmas and New Year's
+        ])
 
         return fig
 
@@ -232,5 +251,10 @@ class fin_plots():
         fig.add_hrect(y0=30, y1=70, line_width=0, fillcolor="green", opacity=0.2,row=2, col=1)
         fig.update_yaxes(range=[10, 90],row=2, col=1)
         fig.update_layout(xaxis_rangeslider_visible=False,height=800, width=1000, xaxis={'type': 'category'})
+
+        fig.update_xaxes( rangebreaks=[
+        dict(bounds=["sat", "mon"]), #hide weekends
+        dict(values=["2015-12-25", "2016-01-01"])  # hide Christmas and New Year's
+        ])
         return fig
 

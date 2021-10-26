@@ -3,7 +3,6 @@ import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
-import yfinance as yf
 import stocks_2 as stk
 import ta_analysis as ta
 import get_plots as gp
@@ -78,7 +77,7 @@ def get_my_fig(input_val):
 
     #Get the plot type I want
 
-    myfig = myplot.get_price_macd(mystock.get_macd())
+    myfig = myplot.get_price_vol_prof()
     return myfig
 
 if __name__ == '__main__':
