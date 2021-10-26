@@ -3,7 +3,6 @@ import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
-import stocks as stk
 import yfinance as yf
 import ta_analysis as ta
 import get_plots as gp
@@ -71,8 +70,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
 )
 def get_my_fig(input_val):
     print('callback')
-    #mystock = yf.Ticker(input_val)
-    mystock = stk.stock(input_val)
+    mystock = yf.Ticker(input_val)
     
     #Generate the Plot
     myplot = gp.fin_plots(mystock.history(period = '1y',interval = '1d'),'My plot')

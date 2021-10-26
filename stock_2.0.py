@@ -17,10 +17,10 @@ class stock():
         
         """
         self._this_stock = yf.Ticker(ticker_symbol)
+        self.info = self._this_stock.info
         self.period = '1y'
         self.interval = '1d'
-        self.ohlc_data = self._this_stock.history(period = self.period,interval = self.interval)
-        self.info = self._this_stock.info
+        self.set_ohlc_data()
 
     def get_bid_ask(self):
         '''
@@ -28,8 +28,8 @@ class stock():
         Returns the bid, ask and spread of a stock object in list form
         Returns [bid,ask,spread]
         '''
-        ask = self._this_stock.info['ask']
-        bid = self._this_stock.info['bid']
+        ask = self.info['ask']
+        bid = self.info['bid']
         spread = round(abs(ask - bid),3)
         return [bid,ask,spread]
 
@@ -42,7 +42,26 @@ class stock():
         for k in ticker_summary:
             print('{} | {} '.format(k,self.info[k]))
 
+    def __set_period__(self,new_period):
+        self.period = new_period
+
+    def __set_interval__(self,new_interval):
+        self.interval = new_interval
+
+    def set_ohlc_data(self):
+        self.ohlc_data = self._this_stock.history(period = self.period,interval = self.interval)
+
+    def get_ohlc(self):
+        return self.ohlc_data
+
+    def ohlc_data_reset(self,new_interval,new_period):
+        self.__set_interval__(new_interval)
+        self.__set_period__(new_period)
+        self.ohlc_data = self.set_ohlc_data()
+
 
 if __name__ == '__main__':
     my_stock = stock('MSFT')
     my_stock.summary()
+    my_stock.get_bid_ask()
+    print(my_stock.get_ohlc().head)
