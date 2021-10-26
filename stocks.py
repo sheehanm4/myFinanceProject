@@ -1,5 +1,6 @@
 from yfinance import Ticker
 
+
 #Define varaibles
 ticker_summary = ('symbol','shortName','sector','industry','marketCap','ask',
 'bid','open','regularMarketOpen','previousClose','dayLow', 
@@ -14,7 +15,6 @@ class stock(Ticker):
         """
         stock(). 
         
-        This Class is based off of Yfinance and the goal is to pull specific data from the Ticker Objects, and re-organize that data into it's own object. Then leverage scripts that can perform calculations to help create graphs and display the technical analysis.
         """
         #ticker_symbol = self.get_ticker()
         
@@ -36,8 +36,12 @@ class stock(Ticker):
         
         self.interval = time_inputs['interval']
         '''
-        self.ohlc_data = self.get_history()
-    
+        self.period = '1y'
+        self.interval = '1d'
+        #self.ohlc_data = self.get_history()
+        self.ohlc_data = self.history(period = self.period,interval = self.interval)
+
+
     def get_bid_ask(self):
         '''
         get_bid_ask ()
