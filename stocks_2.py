@@ -1,4 +1,13 @@
+'''
+This stock class is creating a ticker object with out inheriting all the methods and properties
+Testing using inheritance resulted in errors due to the Ticker CLass alone does not
+have all the attributes neccessary to perform a couple key methods. For the sake of building out
+the rest of the application and features, it is easier to instantiate the class this way.
+'''
+
+from requests.api import get
 import yfinance as yf
+import ta_analysis as ta
 
 
 #Define varaibles
@@ -16,10 +25,14 @@ class stock():
         stock(). 
         
         """
+        #Create the This Stock attribute from yf
         self._this_stock = yf.Ticker(ticker_symbol)
+        #get some basic information
         self.info = self._this_stock.info
+        #set a period  and interval from which to pull and graph data
         self.period = '1y'
         self.interval = '1d'
+        #retrieve the Open,High,Low,Close Data for the given interval
         self.set_ohlc_data()
 
     def get_bid_ask(self):
@@ -42,22 +55,35 @@ class stock():
         for k in ticker_summary:
             print('{} | {} '.format(k,self.info[k]))
 
+    #Set a new period
     def __set_period__(self,new_period):
         self.period = new_period
 
+    #set a new interval
     def __set_interval__(self,new_interval):
         self.interval = new_interval
 
+    #Query for the OHLC Data
     def set_ohlc_data(self):
         self.ohlc_data = self._this_stock.history(period = self.period,interval = self.interval)
 
+    #Get the current OHLC Data
     def get_ohlc(self):
         return self.ohlc_data
 
+    #Query OHLC Data with new period and interval
     def ohlc_data_reset(self,new_interval,new_period):
         self.__set_interval__(new_interval)
         self.__set_period__(new_period)
         self.ohlc_data = self.set_ohlc_data()
+
+    def get_macd(self):
+        return ta.get_macd(self.ohlc_data)
+
+    def get_rsi(self):
+        return ta.get_rsi(self.ohlc_data)
+        
+
 
 
 if __name__ == '__main__':
