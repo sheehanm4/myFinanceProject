@@ -87,7 +87,7 @@ class stock():
         
 
 
-
+'''
 if __name__ == '__main__':
     my_stock = stock('MSFT')
     my_stock.summary()
@@ -95,4 +95,4 @@ if __name__ == '__main__':
     my_stock.ohlc_data_reset('1m','1d')
     my_stock.set_ohlc_data()
     print(my_stock.ohlc_data)
-
+'''
