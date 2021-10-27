@@ -13,46 +13,60 @@ colors = {
     'background': '#504A4B',
     'text': '#7FDBFF'
 }
-
-
-app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[html.H1(
-        children='Hello Dash',
-        style={
-            'textAlign': 'center',
-            'color': colors['text']
+#flex Styles
+heading_style={
+        'textAlign': 'center',
+        'color': colors['text'],
+        'backgroundColor': colors['background']
         }
+
+
+app.layout = html.Div( children=[
+    html.H1(children='Hello Dash', style = heading_style),
+    html.Div(children = [
+        html.Div(children='STONKS'),
+        html.Div(children='A Web Application that helps look at Technical Charts for Stonks.')
+    ],
+    style = heading_style
     ),
 
-    html.Div(children='Dash: A web application framework for your data.', style={
-        'textAlign': 'center',
-        'color': colors['text']}),
+    html.Div(children = [
+        html.Label('Search Stonks',style={'color': colors['text']}),
+        html.Div(dcc.Input(id='ticker_input',value= 'Search', type='text',style={'color': colors['text']})),
+        html.Button('Submit', id='submit-val', n_clicks=0,style={'color': colors['text'],'backgroundColor': colors['background']})
+        ],
+       style={'padding': 10, 'flex': 1} 
+    ),
+            
+    
+    html.Div(
+        children=[
+        html.Label('Period',style={'color': colors['text']}),
+        dcc.Dropdown(id = 'period-dropdown',options=[
+            {'label': '1 Year', 'value': '1y'},
+            {'label': '1 Day', 'value': '1d'},],
+            value='Select',
+            style={'padding': 10, 'flex': 1}
+        ),
+        html.Label('Interval',style={'color': colors['text']}),
+        dcc.Dropdown(id = 'interval-dropdown',options=[
+            {'label': '1 Day', 'value': '1d'},
+            {'label': '1 Minute', 'value': '1m'}],
+            value='Select',
+            style={'padding': 10, 'flex': 1}
+        ),
+        ],
+        style={'display': 'flex', 'flex-direction': 'row'}
+    ),  
 
-    html.Div(dcc.Input(id='ticker_input',value= None, type='text')),
-    html.Button('Submit', id='submit-val', n_clicks=0),
-
-
-    html.Div(children=[
-        html.Label('Period'),
-        dcc.Dropdown(
-            id = 'period-dropdown',
-            options=[
-                {'label': '1 Year', 'value': '1y'},
-                {'label': '1 Day', 'value': '1d'},
-                ],value='Select')]),
-
-    html.Div(children=[
-        html.Label('Interval'),
-        dcc.Dropdown(
-            id = 'interval-dropdown',
-            options=[
-                {'label': '1 Day', 'value': '1d'},
-                {'label': '1 Minute', 'value': '1m'}],
-                value='Select')]),
-       
     dcc.Graph(
         id='stock-graph',
-        figure = {})
-])
+        figure = {},
+        style={'color': colors['text'],'backgroundColor': colors['background']}
+    )
+        ]
+)
+
 
 @app.callback(
     Output(component_id ='stock-graph',component_property = 'figure'),
@@ -63,7 +77,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     )
 def query_ticker(n_clicks,period_val,interval_val, ticker):
 
-    if ticker is None:
+    if ticker == 'Search':
         raise PreventUpdate
     mystock = stk.stock(ticker)
     mystock.ohlc_data_reset(interval_val,period_val)
@@ -75,9 +89,6 @@ def query_ticker(n_clicks,period_val,interval_val, ticker):
     #Get the plot type I want
     myfig = myplot.get_plot_volume()
     return myfig
-
-
-
 
 if __name__ == '__main__':
     #app.run_server(debug=True)
