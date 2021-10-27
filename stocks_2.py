@@ -75,7 +75,6 @@ class stock():
     def ohlc_data_reset(self,new_interval,new_period):
         self.__set_interval__(new_interval)
         self.__set_period__(new_period)
-        self.ohlc_data = self.set_ohlc_data()
 
     def get_macd(self):
         return ta.get_macd(self.ohlc_data)
@@ -93,4 +92,7 @@ if __name__ == '__main__':
     my_stock = stock('MSFT')
     my_stock.summary()
     my_stock.get_bid_ask()
-    print(my_stock.get_ohlc().head)
+    my_stock.ohlc_data_reset('1m','1d')
+    my_stock.set_ohlc_data()
+    print(my_stock.ohlc_data)
+
