@@ -7,6 +7,7 @@ the rest of the application and features, it is easier to instantiate the class 
 
 from requests.api import get
 import yfinance as yf
+from yfinance.utils import empty_df
 import ta_analysis as ta
 
 
@@ -84,14 +85,27 @@ class stock():
 
     def get_ema(self,ema_val = 200):
         return ta.get_ema(self.ohlc_data,ema_val)
+
+    def get_divi(self):
+        if self._this_stock.dividends.empty:
+            return None
+        else:
+            divi_df = self._this_stock.dividends[-4:]
+            return divi_df
+
+    def get_ebit(self):
+        fin_df = self._this_stock.financials
+        return fin_df.loc['Ebit':'Ebit',:]
+        
+        
         
 
 
 if __name__ == '__main__':
-    my_stock = stock('MSFT')
-    my_stock.summary()
+    my_stock = stock('JNJ')
     my_stock.get_bid_ask()
-    my_stock.ohlc_data_reset('1m','1d')
     my_stock.set_ohlc_data()
-    print(my_stock.ohlc_data)
+    
+
+    
 

@@ -155,6 +155,7 @@ def query_ticker(n_clicks,period_val,interval_val, ticker):
     myfig = myplot.get_plot_volume()
     return myfig
 '''
+
 if __name__ == '__main__':
     app.run_server(debug=True, port= 3000)
     #app.run_server(dev_tools_hot_reload=False)
