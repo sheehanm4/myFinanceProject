@@ -39,10 +39,34 @@ app.layout = dbc.Container([
         dbc.Col([
             dbc.InputGroup([dbc.InputGroupText("Search", class_name='btn btn-primary'),dbc.Input(placeholder="VOO...")],class_name = 'mb-2 border border-white'),
             dcc.Graph(id='line-fig', figure={}),
+
+            dbc.Label('Time Frame'),
+                dbc.RadioItems(id = 'timeframe', options=[
+                {"label": "Day ", "value": 1},
+                {"label": "Week", "value": 2},
+                {"label": "Month", "value": 3},
+                {"label": "6 Month", "value": 4},
+                {"label": "Year", "value": 5},
+                {"label": "5 Year", "value": 6},
+                ],
+                value=5,
+                inline=True),
+
+            dbc.Label('Indicators'),
+                dbc.Checklist(id="indicators", options=[
+                {"label": "EMA", "value": 1},
+                {"label": "RSI", "value": 2},
+                {"label": "MACD", "value": 3},
+                {"label": "TBD", "value": 4}
+                ],
+                inline=True,
+                value=[],
+                switch=True),
+
         ],width = {'size':8}),
 
         dbc.Col([
-            dbc.Table.from_dataframe(df = summary_df)
+            dbc.Table(id = 'stock_table',bordered=True,dark=True,hover=True,responsive=True,striped=True).from_dataframe(df = summary_df)
         ], width=4)
 
     ]),
