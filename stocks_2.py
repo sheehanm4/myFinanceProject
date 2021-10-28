@@ -53,7 +53,7 @@ class stock():
         '''
         print('Printing Summary of the Ticker...')
         for k in ticker_summary:
-            print('{} | {} '.format(k,self.info[k]))
+            print('{}, '.format(self.info[k]))
 
     #Set a new period
     def __set_period__(self,new_period):
@@ -87,7 +87,6 @@ class stock():
         
 
 
-'''
 if __name__ == '__main__':
     my_stock = stock('MSFT')
     my_stock.summary()
@@ -95,4 +94,4 @@ if __name__ == '__main__':
     my_stock.ohlc_data_reset('1m','1d')
     my_stock.set_ohlc_data()
     print(my_stock.ohlc_data)
-'''
+
