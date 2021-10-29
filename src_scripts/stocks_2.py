@@ -5,7 +5,6 @@ have all the attributes neccessary to perform a couple key methods. For the sake
 the rest of the application and features, it is easier to instantiate the class this way.
 '''
 
-from requests.api import get
 import yfinance as yf
 from yfinance.utils import empty_df
 import ta_analysis as ta
