@@ -9,7 +9,6 @@ class Test_TestIncrementDecrement(unittest.TestCase):
 
     def test_summary(self):
         self.assertEqual(mystock.info['shortName'], 'Johnson & Johnson')
-        print(mystock.info['shortName'])
 
     def test_bid_ask(self):
         self.assertIsNotNone(mystock.get_bid_ask())
@@ -34,6 +33,10 @@ class Test_TestIncrementDecrement(unittest.TestCase):
         a = mystock.get_ohlc().index[2] - mystock.get_ohlc().index[1]
         self.assertEqual(a.total_seconds(),float(60))
 
+    def test_get_ohlc(self):
+        self.assertIsNotNone(mystock.get_ohlc())
+
+    
 
     
 
