@@ -11,5 +11,8 @@
         "test*.py"
     ],
     "pythonTestExplorer.testplanEnabled": true,
-    "python.testing.unittestEnabled": true
+    "python.testing.unittestEnabled": true,
+    "python.analysis.extraPaths": [
+        "./src_scripts"
+    ]
 }

@@ -7,8 +7,8 @@ from dash.exceptions import PreventUpdate
 import dash_bootstrap_components as dbc
 from dash_bootstrap_components._components.Row import Row
 from requests.api import options
-import stocks_2 as stk
-import get_plots as gp
+#import stocks_2 as stk
+#import get_plots as gp
 import pandas as pd
 
 
@@ -37,7 +37,7 @@ app.layout = dbc.Container([
 
     dbc.Row([
         dbc.Col([
-            dbc.InputGroup([dbc.InputGroupText("Search", class_name='btn btn-primary'),dbc.Input(placeholder="VOO...")],class_name = 'mb-2 border border-white'),
+            dbc.InputGroup([dbc.InputGroupText("Search", class_name='mb-2 btn btn-primary border-white'),dbc.Input(placeholder="VOO...",class_name = 'mb-2 border border-white text-white')]),
             dcc.Graph(id='line-fig', figure={}),
 
             dbc.Label('Time Frame'),
@@ -67,14 +67,25 @@ app.layout = dbc.Container([
 
         dbc.Col([
             dbc.Table(id = 'stock_table',bordered=True,dark=True,hover=True,responsive=True,striped=True).from_dataframe(df = summary_df)
-        ], width=4)
+        ], width={'size':4})
 
     ]),
 
     dbc.Row([
-
+        dbc.Col([
+            html.P('Dividends',style={'textDecoration': 'underline'}),
+            dbc.CardBody([
+                html.H4("Title", className="card-title"),
+                html.H6("Card subtitle", className="card-subtitle"),
+                html.P(
+                "Some quick example text to build on the card title and make "
+                "up the bulk of the card's content.",
+                className="card-text",
+                ),
+            ])
+        ],style={"width": "18rem"}),
     ])
-])
+], fluid=False)
 
 
 '''
@@ -157,5 +168,4 @@ def query_ticker(n_clicks,period_val,interval_val, ticker):
 '''
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port= 3000)
-    #app.run_server(dev_tools_hot_reload=False)
+    app.run_server(debug=True,dev_tools_hot_reload=False, port= 3000)
