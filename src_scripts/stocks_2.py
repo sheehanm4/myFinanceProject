@@ -51,9 +51,10 @@ class stock():
         summary(
         Returns a list of summary data from stock
         '''
-        print('Printing Summary of the Ticker...')
-        for k in ticker_summary:
-            print('{}, '.format(self.info[k]))
+        my_summary = {}
+        for k in range(len(ticker_summary)):
+            my_summary[ticker_summary[k]] = self._this_stock.info[ticker_summary[k]]
+        return my_summary
 
     #Set a new period
     def __set_period__(self,new_period):
